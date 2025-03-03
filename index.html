@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Fo2d20 Character Creation</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" href="./favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="grid" id="page1">
+      <div>
+        <p>
+          Name:
+          <input type="text" id="name-input" />
+        </p>
+        <span class="left2">
+          <p>
+            <input
+              type="radio"
+              onclick="characterType('vault')"
+              name="characterType"
+            />
+            Vault Dweller
+            <a
+              href="https://fallout.fandom.com/wiki/Vault_Dweller_(Fallout_76)"
+              target="_blank"
+              >[i]</a
+            >
+          </p>
+          <p>
+            <input
+              type="radio"
+              onclick="characterType('survivor')"
+              name="characterType"
+            />
+            Survivor
+            <a href="https://fallout.fandom.com/wiki/Human" target="_blank"
+              >[i]</a
+            >
+          </p>
+          <p>
+            <input
+              type="radio"
+              onclick="characterType('brotherhood')"
+              name="characterType"
+            />
+            Brotherhood of Steel
+            <a
+              href="https://fallout.fandom.com/wiki/Brotherhood_of_Steel"
+              target="_blank"
+              >[i]</a
+            >
+          </p>
+          <p>
+            <input
+              type="radio"
+              onclick="characterType('ghoul')"
+              name="characterType"
+            />
+            Ghoul
+            <a href="https://fallout.fandom.com/wiki/Ghoul" target="_blank"
+              >[i]</a
+            >
+          </p>
+          <p>
+            <input
+              type="radio"
+              onclick="characterType('robot')"
+              name="characterType"
+            />
+            Robot
+            <a
+              href="https://fallout.fandom.com/wiki/Mister_Handy_(Fallout_4)"
+              target="_blank"
+              >[i]</a
+            >
+          </p>
+          <p>
+            <input
+              type="radio"
+              onclick="characterType('mutant')"
+              name="characterType"
+            />
+            Super Mutant
+            <a
+              href="https://fallout.fandom.com/wiki/Super_mutant_(Fallout)"
+              target="_blank"
+              >[i]</a
+            >
+          </p>
+        </span>
+        <span class="center2">
+          <p class="align-center"><b>SPECIAL min-maxes:</b></p>
+          <div class="left">
+            <span>Strength:</span><br />
+            <span>Perception:</span><br />
+            <span>Endurance:</span><br />
+            <span>Charisma:</span><br />
+            <span>Intelligence:</span><br />
+            <span>Agility:</span><br />
+            <span>Luck:</span>
+          </div>
+          <div
+            class="right align-right"
+            id="special-minmaxes"
+            style="white-space-collapse: preserve-spaces"
+          >
+            <span>4 - 10</span><br />
+            <span>4 - 10</span><br />
+            <span>4 - 10</span><br />
+            <span>4 - 10</span><br />
+            <span>4 - 10</span><br />
+            <span>4 - 10</span><br />
+            <span>4 - 10</span>
+          </div>
+        </span>
+        <span class="right2">
+          <p id="character-type-box"></p>
+        </span>
+      </div>
+
+      <div>
+        <h2 class="align-center">Traits</h2>
+        <p>
+          Every character type has a unique trait that makes it stand out.
+          Survivors get to choose two traits, helping them specialise a little
+          more.
+        </p>
+        <p id="character-trait-box"></p>
+      </div>
+
+      <div>
+        <h2 class="align-center">SPECIAL Explanation</h2>
+        <p>
+          Every character is defined by these seven attributes, with a higher
+          number representing greater ability. They can be closely compared to
+          the D&D system of attributes.
+          <br />
+          When attempting skill checks, these attributes form part of the target
+          number when rolling the dice.
+          <br /><br />
+          Typically, you'll want a decent PER (for initiative and ranged
+          weapons), END (for health) and AGI (for initiative and AC).
+          <br />
+          <br />
+          <input type="checkbox" onclick="toggleDerived()" /> Show derived
+          statistics
+        </p>
+        <span class="left3">
+          <p>
+            <b>Strength (STR)</b> measures your character's physical prowess.
+          </p>
+          <b>what it does:</b> used to make melee attacks, increase melee
+          damage, and changes how much you can carry<br />
+          <b>buy ranks if:</b> you want to be strong and solve problems with
+          brute force<br />
+
+          <span class="gray hidden" name="derived">
+            <br />
+            Carry weight: 150lbs + STR x 10
+            <br />
+            Penalties apply if overencumbered
+            <br /><br />
+            A STR of 7 or higher boosts melee damage
+          </span>
+
+          <br />
+          <br />
+          <br />
+          <br />
+
+          <p>
+            <b>Perception (PER)</b> is how easily you notice danger, and how
+            aware you are of the environment around you.
+          </p>
+          <b>what it does:</b> affects your initiative order, makes perception
+          checks easier and improves your ability to use Energy Weapons<br />
+          <b>buy ranks if:</b> you want to be a perceptive person and solve
+          problems by studying your surroundings <br />
+
+          <span class="gray hidden" name="derived">
+            <br />
+            Initiative: PER + AGI
+          </span>
+
+          <br />
+          <br />
+
+          <p>
+            <b>Endurance (END)</b> is your natural toughness and influences how
+            hard you are overall.
+          </p>
+          <b>what it does:</b> boosts your health points, improves your ability
+          to shrug off physical dangers in the wasteland, and helps you wield
+          heavy weapons<br />
+          <b>buy ranks if:</b> you want to be hardy and resilient, and solve
+          problems by pushing through them <br />
+
+          <span class="gray hidden" name="derived">
+            <br />
+            Max HP: END + LCK
+            <br />
+            You gain additional HP when levelling or when taking certain perks
+          </span>
+        </span>
+        <span class="middle3">
+          <p>
+            <b>Charisma (CHA)</b> is how much people like you, and how well you
+            can influence them in turn.
+          </p>
+          <b>what it does:</b> improves your effectiveness at convincing others,
+          helps you barter with people and helps you find safety among others<br />
+          <b>buy ranks if:</b> you want to be diplomatic and persuasive, or you
+          wish to solve problems by talking your way out of them <br />
+
+          <br />
+          <br />
+
+          <p>
+            <b>Intelligence (INT)</b> measures your smarts and how well you can
+            apply yourself to the wasteland.
+          </p>
+          <b>what it does:</b> improves your ability to assess obstacles and
+          hazards, and helps you remember and know things by studying the world
+          around you<br />
+          <b>buy ranks if:</b> you want to be cunning and clever, and find the
+          most effective solution to your problems <br />
+
+          <br />
+          <br />
+
+          <p>
+            <b>Agility (AGL)</b> measures how fit and agile you are, and helps
+            make you quick and lean.
+          </p>
+          <b>what it does:</b> helps you to balance and control your body more
+          precisely, and improves your ability to make ranged attacks with Small
+          Guns<br />
+          <b>buy ranks if:</b> you want to be nimble, and want to solve problems
+          with accuracy and skill <br />
+
+          <span class="gray hidden" name="derived">
+            <br />
+            Initiative: PER + AGI
+            <br /><br />
+            Defense is based on AGI - higher AGI makes you harder to hit
+            <br />
+            Defense is increased to 2 over 9 AGI
+          </span>
+        </span>
+        <span class="right3">
+          <p>
+            <b>Luck (LCK)</b> describes how much fortune smiles down on you,
+            turning fickle forces in your favour.
+          </p>
+          <b>what it does:</b> helps you come out on top when you should be at
+          the bottom, and could influence chances related to any event<br />
+          <b>buy ranks if:</b> you want to add story details, improve skill
+          check results, or re-roll dice <br />
+
+          <span class="gray hidden" name="derived">
+            <br />
+            Max HP: END + LCK
+            <br />
+            You gain additional HP when levelling or when taking certain perks
+          </span>
+        </span>
+      </div>
+    </div>
+  </body>
+  <script src="./consts.js"></script>
+  <script src="./script.js" defer></script>
+</html>

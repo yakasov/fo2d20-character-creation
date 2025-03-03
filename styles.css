@@ -1,0 +1,67 @@
+body {
+  background: #fad6a5;
+  margin: 2% 2%;
+}
+
+.grid {
+  display: grid;
+}
+
+.left {
+  width: 50%;
+  float: left;
+}
+
+.right {
+  width: 50%;
+  float: right;
+}
+
+.left2 {
+  width: 20%;
+  float: left;
+}
+
+.center2 {
+  margin: 0 5%;
+  width: 25%;
+  float: left;
+}
+
+.right2 {
+  width: 45%;
+  float: right;
+}
+
+.left3 {
+  width: 30%;
+  float: left;
+}
+
+.middle3 {
+  margin: 0 5%;
+  width: 30%;
+  float: left;
+}
+
+.right3 {
+  width: 30%;
+  float: right;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.gray {
+  color: #666;
+  font-style: italic;
+}
+
+.hidden {
+  display: none;
+}
