@@ -5,15 +5,15 @@ const CHARACTER_TRAITS = {
     `,
   survivor: `You may choose two of the following traits, or one trait and one additional perk. Each trait has a benefit and may have an accompanying penalty.
     <br /><br />
-    <b>Educated:</b> You have one additional tag skill, but if you fail a skill check using a skill other than a tag skill, the GM gains 1 AP.
+    <b><input type="checkbox" onclick="selectTrait('educated')" name="trait-select" />&nbsp;Educated:</b> You have one additional tag skill, but if you fail a skill check using a skill other than a tag skill, the GM gains 1 AP.
     <br />
-    <b>Fast Shot:</b> If you take a second major action in combat, and use it to make a range attack, the additional action costs 1 AP rather than 2 AP - however, you cannot use the Aim minor action.
+    <b><input type="checkbox" onclick="selectTrait('fast shot')" name="trait-select" />&nbsp;Fast Shot:</b> If you take a second major action in combat, and use it to make a range attack, the additional action costs 1 AP rather than 2 AP - however, you cannot use the Aim minor action.
     <br />
-    <b>Gifted:</b> Choose two S.P.E.C.I.A.L attributes and increase them by +1 each, but your maximum of Luck points is one fewer than your Luck attribute. 
+    <b><input type="checkbox" onclick="selectTrait('gifted')" name="trait-select" />&nbsp;Gifted:</b> Choose two S.P.E.C.I.A.L attributes and increase them by +1 each, but your maximum of Luck points is one fewer than your Luck attribute. 
     <br />
-    <b>Heavy Handed:</b> Your Melee Damage bonus increases by +1 Combat Die, but your melee and unarmed attacks suffer a complication on a 1 or 2, as opposed to just a 1.
+    <b><input type="checkbox" onclick="selectTrait('heavy handed')" name="trait-select" />&nbsp;Heavy Handed:</b> Your Melee Damage bonus increases by +1 Combat Die, but your melee and unarmed attacks suffer a complication on a 1 or 2, as opposed to just a 1.
     <br />
-    <b>Small Frame:</b> You may re-roll 1d20 on all AGI checks which rely on balance or contortion, but your carry weight is reduced to <i>150 + 5 x STR lbs</i>. 
+    <b><input type="checkbox" onclick="selectTrait('small frame')" name="trait-select" />&nbsp;Small Frame:</b> You may re-roll 1d20 on all AGI checks which rely on balance or contortion, but your carry weight is reduced to <i>150 + 5 x STR lbs</i>. 
     `,
   brotherhood: `<b>The Chain that Binds:</b> You gain one additional Tag skill, which must be either Energy Weapons, Science or Repair.
     <br /><br />
@@ -33,7 +33,7 @@ const CHARACTER_TRAITS = {
     <br />
     <b>Buzz-Saw:</b> You can cut objects and make melee attacks with a circular saw. The buzz-saw inflicts 3 Combat Dice x Piercing 1 physical damage.
     <br />
-    <b>Flamer:</b> You can set objects aligh, cook food, or make ranged attacks with a short-range flamethrower.
+    <b>Flamer:</b> You can set objects alight, cook food, or make ranged attacks with a short-range flamethrower.
     <br />
     <b>Laser Emitter:</b> You can cut objects or make ranged attacks using a laser.
     <br />
