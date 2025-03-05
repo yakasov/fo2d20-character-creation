@@ -69,3 +69,20 @@ body {
 .float-right {
   float: right;
 }
+
+.thin-button {
+  line-height: 9px;
+}
+
+.push-down {
+  transform: translateY(24px); /* this is an unbelievably stupid solution */
+}
+
+.push-down-more {
+  transform: translateY(48px);
+}
+
+.push-down-even-more {
+  transform: translateY(72px); /* whatever lol */
+  margin-bottom: 72px;
+}
