@@ -49,6 +49,26 @@ body {
   float: right;
 }
 
+.left40 {
+  width: 40%;
+  float: left;
+}
+
+.right60 {
+  width: 60%;
+  float: right;
+}
+
+.left75 {
+  width: 75%;
+  float: left;
+}
+
+.right25 {
+  width: 25%;
+  float: right;
+}
+
 .align-center {
   text-align: center;
 }

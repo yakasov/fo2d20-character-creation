@@ -19,7 +19,9 @@
           Name:
           <input type="text" id="name-input" onchange="updateName(this)" />
 
-          <span class="float-right"> test </span>
+          <span class="float-right"
+            ><button onclick="validateNextPage(2)">Next page --></button></span
+          >
         </p>
         <span class="left2">
           <p>
@@ -455,6 +457,90 @@
             <br />
             You gain additional HP when levelling or when taking certain perks
           </span>
+        </span>
+      </div>
+    </div>
+
+    <div class="grid" id="page2">
+      <div>
+        <div class="align-center">
+          <h2>Skills</h2>
+          <p>
+            You are trained in several skills, which encompass the various
+            activities and proficiencies that you've picked up surviving in the
+            post-apocalyptic wasteland. Each skill ranked from 0 to 6, with each
+            rank representing a differing degree of training.
+            <br />
+            You add your skill rank together with your SPECIAL attribute to get
+            your target when making a skill check.
+          </p>
+          <p>You have X points and Y tag skills left.</p>
+        </div>
+        <span class="left40">
+          <div class="left">
+            <b>Skill</b><br />
+            Athletics<br /><br />
+            Barter<br /><br />
+            Big Guns<br /><br />
+            Energy Weapons<br /><br />
+            Explosives<br /><br />
+            Lockpick<br /><br />
+            Medicine<br /><br />
+            Melee Weapons<br /><br />
+            Pilot<br /><br />
+            Repair<br /><br />
+            Science<br /><br />
+            Small Guns<br /><br />
+            Sneak<br /><br />
+            Speech<br /><br />
+            Survival<br /><br />
+            Throwing<br /><br />
+            Unarmed
+          </div>
+          <div class="right">
+            <b>Attribute</b><br />
+            Strength<br /><br />
+            Charisma<br /><br />
+            Endurance<br /><br />
+            Perception<br /><br />
+            Perception<br /><br />
+            Perception<br /><br />
+            Intelligence<br /><br />
+            Strength<br /><br />
+            Perception<br /><br />
+            Intelligence<br /><br />
+            Intelligence<br /><br />
+            Agility<br /><br />
+            Agility<br /><br />
+            Charisma<br /><br />
+            Endurance<br /><br />
+            Agility<br /><br />
+            Strength
+          </div>
+        </span>
+        <span class="right60">
+          <div class="left75">
+            <b>Detail</b><br />
+            Lifting, pushing, pulling, jumping, running and swimming
+          </div>
+          <div class="right25 align-right">
+            <b>Point Allocation</b><br />
+            <span>
+              <button class="thin-button" onclick="minusSkill('athletics')">
+                -
+              </button>
+              <span id="athletics-skill">0</span>
+              <button class="thin-button" onclick="plusSkill('athletics')">
+                +
+              </button>
+              <input
+                onclick="tagSkill('athletics')"
+                style="transform: translateY(2px)"
+                type="checkbox"
+              />
+              Tag?
+            </span>
+          </div>
         </span>
       </div>
     </div>

@@ -8,6 +8,25 @@ const CHARACTER = {
   },
   gifted: [],
   name: null,
+  skills: {
+    athletics: 0,
+    barter: 0,
+    big_guns: 0,
+    energy_weapons: 0,
+    explosives: 0,
+    lockpick: 0,
+    medicine: 0,
+    melee_weapons: 0,
+    pilot: 0,
+    repair: 0,
+    science: 0,
+    small_guns: 0,
+    sneak: 0,
+    speech: 0,
+    survival: 0,
+    throwing: 0,
+    unarmed: 0,
+  },
   special: {
     strength: 4,
     perception: 4,
@@ -17,10 +36,20 @@ const CHARACTER = {
     agility: 4,
     luck: 4,
   },
+  tags: [],
   traits: [],
   type: null,
 };
 let attributePoints = 12;
+
+let allocatedSkillPoints = 0;
+let skillPointsMax = () => 9 + CHARACTER.intelligence;
+let tagSkillsMax = () =>
+  4 +
+  (CHARACTER.traits.includes("educated") ? 1 : 0) -
+  (CHARACTER.type === "ghoul" ? 1 : 0);
+
+let skipValidate = true;
 
 function characterType(type) {
   CHARACTER.type = type;
@@ -222,8 +251,10 @@ function updateDerivedStats() {
   CHARACTER.derived.hp = CHARACTER.special.endurance + CHARACTER.special.luck;
   CHARACTER.derived.defense = CHARACTER.special.agility >= 9 ? 2 : 1;
   CHARACTER.derived.carry =
-    (CHARACTER.traits.includes("small frame") ? 150 : 175) +
-    CHARACTER.special.strength * 10;
+    CHARACTER.type === "robot"
+      ? 150
+      : (CHARACTER.traits.includes("small frame") ? 150 : 175) +
+        CHARACTER.special.strength * 10;
   CHARACTER.derived.melee =
     (CHARACTER.special.strength >= 11
       ? 4
@@ -244,4 +275,37 @@ function updateDerivedStats() {
   document.getElementById("derived-melee").innerText = CHARACTER.derived.melee;
   document.getElementById("derived-initiative").innerText =
     CHARACTER.derived.initiative;
+}
+
+function validateNextPage(page) {
+  if (page === 2) {
+    if (!skipValidate) {
+      if (!CHARACTER.type) {
+        return alert("You must pick a character type!");
+      }
+
+      if (attributePoints !== 0) {
+        return alert("You have unspent SPECIAL attribute points!");
+      }
+
+      if (CHARACTER.type === "survivor" && CHARACTER.traits.length === 0) {
+        return alert("As a survivor, you must pick at least one trait!");
+      }
+
+      if (
+        CHARACTER.type === "survivor" &&
+        CHARACTER.traits.includes("gifted") &&
+        CHARACTER.gifted.length !== 2
+      ) {
+        return alert("You have unpicked Gifted attribute allocations!");
+      }
+
+      if (!CHARACTER.name) {
+        return alert("Please enter a name!");
+      }
+    }
+
+    document.getElementById("page1").classList.add("hidden");
+    document.getElementById("page2").classList.remove("hidden");
+  }
 }
