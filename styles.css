@@ -69,6 +69,22 @@ body {
   float: right;
 }
 
+.left33 {
+  width: 31%;
+  float: left;
+}
+
+.center33 {
+  width: 31%;
+  float: left;
+  margin: 0 3%;
+}
+
+.right33 {
+  width: 31%;
+  float: right;
+}
+
 .align-center {
   text-align: center;
 }
@@ -105,4 +121,11 @@ body {
 .push-down-even-more {
   transform: translateY(72px); /* whatever lol */
   margin-bottom: 72px;
+}
+
+.perk-css {
+  border-style: solid;
+  border-width: 1px;
+  padding: 8px;
+  margin: 16px 0;
 }

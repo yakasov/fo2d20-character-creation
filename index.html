@@ -459,7 +459,7 @@
       </div>
     </div>
 
-    <div class="grid" id="page2">
+    <div class="grid hidden" id="page2">
       <div>
         <p>
           <span class="float-left"
@@ -1050,6 +1050,131 @@
             the critical success boundary would be <i>20 - 3 = 17</i>).
           </p>
         </div>
+      </div>
+    </div>
+
+    <div class="grid hidden" id="page3">
+      <div>
+        <p>
+          <span class="float-left"
+            ><button onclick="validateNextPage(2)">
+              <-- Previous page
+            </button></span
+          >
+
+          <span class="float-right"
+            ><button onclick="validateNextPage(4)">Next page --></button></span
+          >
+        </p>
+      </div>
+
+      <div class="align-center">
+        <h2>Perks</h2>
+        <p>
+          Every character has a personal edge, called perks. Perks are the
+          specific advantages of your personal approach to challenges. They take
+          the form of a mechanical bonus that apply to a specific circumstance.
+          <br /><br />
+          Many perks have one or more requirements. These requirements must be
+          met before you can select the perk for your character.
+          <br /><br />
+          Each perk has a condition and a benefit. The condition describes the
+          circumstances in which the perk can be used, and the benefit describes
+          what you can do with the perk.
+        </p>
+      </div>
+      <div>
+        <span class="left33">
+          <div class="perk-css" onclick="choosePerk('action_boy')">
+            <h3><b>Action Boy/Girl</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> None</p>
+            <p>
+              When you spend AP to take an additional major action, you do not
+              suffer the increased skill test difficulty during your second
+              action.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('basher')">
+            <h3><b>Basher</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> STR 6</p>
+            <p>
+              When you make a melee attack by bashing with your gun, your attack
+              gains the Vicious damage effect.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('black_widow')">
+            <h3><b>Black Widow/Lady Killer</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> CHA 6</p>
+            <p>
+              When you attempt a CHA based skill check to influence a character
+              of the opposite gender, you may re-roll 1d20. In addition, your
+              attacks inflict +1 Combat Dies worth of additional damage against
+              the opposite gender.
+            </p>
+          </div>
+        </span>
+        <span class="center33">
+          <div class="perk-css" onclick="choosePerk('adrenaline_rush')">
+            <h3><b>Adrenaline Rush</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> STR 7</p>
+            <p>
+              When your health is below its maximum value, you count your STR
+              score as 10 for all purposes when attempting a STR-base skill
+              check or melee attack.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('better_criticals')">
+            <h3><b>Better Criticals</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> LCK 9</p>
+            <p>
+              When you inflict one or more points of damage to an enemy, you may
+              spend 1 Luck point to automatically inflict a critical hit.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('bloody_mess')">
+            <h3><b>Bloody Mess</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> LCK 6</p>
+            <p>
+              When you inflict a critical hit, roll 1 Combat Die; if you roll an Effect, you inflict one additional injury to a random location.
+            </p>
+          </div>
+        </span>
+        <span class="right33">
+          <div class="perk-css" onclick="choosePerk('awareness')">
+            <h3><b>Awareness</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> PER 7</p>
+            <p>
+              When you take the Aim minor action at a target within Close range,
+              you spot their weakness and can attack more efficiently. The next
+              attack you make against that target gains Piercing 1 damage
+              effect.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('big_leagues')">
+            <h3><b>Big Leagues</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> STR 8</p>
+            <p>
+              When you make a melee attack with a two-handed weapon, the weapon
+              gains the Vicious damage effect.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('can_do')">
+            <h3><b>Can Do!</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> LCK 5</p>
+            <p>
+              When you are scavenging a location that contains food, you gain 1 additional random food item, without spending AP.
+            </p>
+          </div>
+        </span>
       </div>
     </div>
   </body>

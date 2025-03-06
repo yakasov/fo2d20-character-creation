@@ -316,6 +316,20 @@ function validateNextPage(page) {
       document.getElementById("page1").classList.add("hidden");
       document.getElementById("page2").classList.remove("hidden");
       break;
+    case 3:
+      if (!skipValidate) {
+        if (allocatedSkillPoints !== skillPointsMax()) {
+          return alert("You have not allocated all of your skill points!")
+        }
+
+        if (CHARACTER.tags.length !== tagSkillsMax()) {
+          return alert("You have not allocated all of your Tag skills!")
+        }
+      }
+      
+      document.getElementById("page2").classList.add("hidden");
+      document.getElementById("page3").classList.remove("hidden");
+      break;
     default:
       break;
   }
