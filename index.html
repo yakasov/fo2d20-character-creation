@@ -359,8 +359,6 @@
 
           <br />
           <br />
-          <br />
-          <br />
 
           <p>
             <b>Perception (PER)</b> is how easily you notice danger, and how
@@ -463,6 +461,18 @@
 
     <div class="grid" id="page2">
       <div>
+        <p>
+          <span class="float-left"
+            ><button onclick="validateNextPage(1)">
+              <-- Previous page
+            </button></span
+          >
+
+          <span class="float-right"
+            ><button onclick="validateNextPage(3)">Next page --></button></span
+          >
+        </p>
+
         <div class="align-center">
           <h2>Skills</h2>
           <p>
@@ -473,8 +483,13 @@
             <br />
             You add your skill rank together with your SPECIAL attribute to get
             your target when making a skill check.
+            <br />
+            <br />
+            When initially allocating your skill points, you can only allocate
+            up to a max of rank 3. Allocating a Tag skill sets the minimum rank
+            of that skill to 2.
           </p>
-          <p>You have X points and Y tag skills left.</p>
+          <p id="skill-points-left">You have X points and Y tag skills left.</p>
         </div>
         <span class="left40">
           <div class="left">
@@ -518,23 +533,504 @@
             Strength
           </div>
         </span>
-        <span class="right60">
+        <span class="right60" style="position: sticky; z-index: 10">
           <div class="left75">
             <b>Detail</b><br />
-            Lifting, pushing, pulling, jumping, running and swimming
+            Lifting, pushing, pulling, jumping, running and swimming<br /><br />
+            Buying and selling<br /><br />
+            Using heavy weapons such as miniguns, Fat Mans and gatling lasers<br /><br />
+            Using energy weapons such as laser guns and plasma guns<br /><br />
+            Blowing things up, or stopping them from doing that<br /><br />
+            Opening locks without the key<br /><br />
+            Healing people and stabilizing the dying<br /><br />
+            Fighting people with bats, clubs, knives, boards, wrenches and
+            sledges<br /><br />
+            Flying and driving<br /><br />
+            Fixing stuff, crafting things and building machines<br /><br />
+            Hacking, programming and brewing chems<br /><br />
+            Shooting people with pistols, rifles and shotguns<br /><br />
+            Moving quietly and staying hidden<br /><br />
+            Making friends, influencing people and lying to them if you have
+            to<br /><br />
+            Foraging, hunting, cooking and enduring the wastes<br /><br />
+            Launching weapons from your hands, like spears or knives<br /><br />
+            Fighting without a weapon by making unarmed attacks
           </div>
           <div class="right25 align-right">
             <b>Point Allocation</b><br />
             <span>
-              <button class="thin-button" onclick="minusSkill('athletics')">
+              <button
+                class="thin-button"
+                disabled="true"
+                id="athletics-min"
+                name="skill-decrease"
+                onclick="minusSkill('athletics')"
+              >
                 -
               </button>
               <span id="athletics-skill">0</span>
-              <button class="thin-button" onclick="plusSkill('athletics')">
+              <button
+                class="thin-button"
+                id="athletics-max"
+                name="skill-increase"
+                onclick="plusSkill('athletics')"
+              >
                 +
               </button>
               <input
+                name="tag-box"
                 onclick="tagSkill('athletics')"
+                style="transform: translateY(2px)"
+                type="checkbox"
+              />
+              Tag?
+            </span>
+            <br /><br />
+            <span>
+              <button
+                class="thin-button"
+                disabled="true"
+                id="barter-min"
+                name="skill-decrease"
+                onclick="minusSkill('barter')"
+              >
+                -
+              </button>
+              <span id="barter-skill">0</span>
+              <button
+                class="thin-button"
+                id="barter-max"
+                name="skill-increase"
+                onclick="plusSkill('barter')"
+              >
+                +
+              </button>
+              <input
+                name="tag-box"
+                onclick="tagSkill('barter')"
+                style="transform: translateY(2px)"
+                type="checkbox"
+              />
+              Tag?
+            </span>
+            <br /><br />
+            <span>
+              <button
+                class="thin-button"
+                disabled="true"
+                id="big_guns-min"
+                name="skill-decrease"
+                onclick="minusSkill('big_guns')"
+              >
+                -
+              </button>
+              <span id="big_guns-skill">0</span>
+              <button
+                class="thin-button"
+                id="big_guns-max"
+                name="skill-increase"
+                onclick="plusSkill('big_guns')"
+              >
+                +
+              </button>
+              <input
+                name="tag-box"
+                onclick="tagSkill('big_guns')"
+                style="transform: translateY(2px)"
+                type="checkbox"
+              />
+              Tag?
+            </span>
+            <br /><br />
+            <span>
+              <button
+                class="thin-button"
+                disabled="true"
+                id="energy_weapons-min"
+                name="skill-decrease"
+                onclick="minusSkill('energy_weapons')"
+              >
+                -
+              </button>
+              <span id="energy_weapons-skill">0</span>
+              <button
+                class="thin-button"
+                id="energy_weapons-max"
+                name="skill-increase"
+                onclick="plusSkill('energy_weapons')"
+              >
+                +
+              </button>
+              <input
+                id="bos-energy_weapons"
+                name="tag-box"
+                onclick="tagSkill('energy_weapons')"
+                style="transform: translateY(2px)"
+                type="checkbox"
+              />
+              Tag?
+            </span>
+            <br /><br />
+            <span>
+              <button
+                class="thin-button"
+                disabled="true"
+                id="explosives-min"
+                name="skill-decrease"
+                onclick="minusSkill('explosives')"
+              >
+                -
+              </button>
+              <span id="explosives-skill">0</span>
+              <button
+                class="thin-button"
+                id="explosives-max"
+                name="skill-increase"
+                onclick="plusSkill('explosives')"
+              >
+                +
+              </button>
+              <input
+                name="tag-box"
+                onclick="tagSkill('explosives')"
+                style="transform: translateY(2px)"
+                type="checkbox"
+              />
+              Tag?
+            </span>
+            <br /><br />
+            <span>
+              <button
+                class="thin-button"
+                disabled="true"
+                id="lockpick-min"
+                name="skill-decrease"
+                onclick="minusSkill('lockpick')"
+              >
+                -
+              </button>
+              <span id="lockpick-skill">0</span>
+              <button
+                class="thin-button"
+                id="lockpick-max"
+                name="skill-increase"
+                onclick="plusSkill('lockpick')"
+              >
+                +
+              </button>
+              <input
+                name="tag-box"
+                onclick="tagSkill('lockpick')"
+                style="transform: translateY(2px)"
+                type="checkbox"
+              />
+              Tag?
+            </span>
+            <br /><br />
+            <span>
+              <button
+                class="thin-button"
+                disabled="true"
+                id="medicine-min"
+                name="skill-decrease"
+                onclick="minusSkill('medicine')"
+              >
+                -
+              </button>
+              <span id="medicine-skill">0</span>
+              <button
+                class="thin-button"
+                id="medicine-max"
+                name="skill-increase"
+                onclick="plusSkill('medicine')"
+              >
+                +
+              </button>
+              <input
+                name="tag-box"
+                onclick="tagSkill('medicine')"
+                style="transform: translateY(2px)"
+                type="checkbox"
+              />
+              Tag?
+            </span>
+            <br /><br />
+            <span>
+              <button
+                class="thin-button"
+                disabled="true"
+                id="melee_weapons-min"
+                name="skill-decrease"
+                onclick="minusSkill('melee_weapons')"
+              >
+                -
+              </button>
+              <span id="melee_weapons-skill">0</span>
+              <button
+                class="thin-button"
+                id="melee_weapons-max"
+                name="skill-increase"
+                onclick="plusSkill('melee_weapons')"
+              >
+                +
+              </button>
+              <input
+                name="tag-box"
+                onclick="tagSkill('melee_weapons')"
+                style="transform: translateY(2px)"
+                type="checkbox"
+              />
+              Tag?
+            </span>
+            <br /><br />
+            <span>
+              <button
+                class="thin-button"
+                disabled="true"
+                id="pilot-min"
+                name="skill-decrease"
+                onclick="minusSkill('pilot')"
+              >
+                -
+              </button>
+              <span id="pilot-skill">0</span>
+              <button
+                class="thin-button"
+                id="pilot-max"
+                name="skill-increase"
+                onclick="plusSkill('pilot')"
+              >
+                +
+              </button>
+              <input
+                name="tag-box"
+                onclick="tagSkill('pilot')"
+                style="transform: translateY(2px)"
+                type="checkbox"
+              />
+              Tag?
+            </span>
+            <br /><br />
+            <span>
+              <button
+                class="thin-button"
+                disabled="true"
+                id="repair-min"
+                name="skill-decrease"
+                onclick="minusSkill('repair')"
+              >
+                -
+              </button>
+              <span id="repair-skill">0</span>
+              <button
+                class="thin-button"
+                id="repair-max"
+                name="skill-increase"
+                onclick="plusSkill('repair')"
+              >
+                +
+              </button>
+              <input
+                id="bos-repair"
+                name="tag-box"
+                onclick="tagSkill('repair')"
+                style="transform: translateY(2px)"
+                type="checkbox"
+              />
+              Tag?
+            </span>
+            <br /><br />
+            <span>
+              <button
+                class="thin-button"
+                disabled="true"
+                id="science-min"
+                name="skill-decrease"
+                onclick="minusSkill('science')"
+              >
+                -
+              </button>
+              <span id="science-skill">0</span>
+              <button
+                class="thin-button"
+                id="science-max"
+                name="skill-increase"
+                onclick="plusSkill('science')"
+              >
+                +
+              </button>
+              <input
+                id="bos-science"
+                name="tag-box"
+                onclick="tagSkill('science')"
+                style="transform: translateY(2px)"
+                type="checkbox"
+              />
+              Tag?
+            </span>
+            <br /><br />
+            <span>
+              <button
+                class="thin-button"
+                disabled="true"
+                id="small_guns-min"
+                name="skill-decrease"
+                onclick="minusSkill('small_guns')"
+              >
+                -
+              </button>
+              <span id="small_guns-skill">0</span>
+              <button
+                class="thin-button"
+                id="small_guns-max"
+                name="skill-increase"
+                onclick="plusSkill('small_guns')"
+              >
+                +
+              </button>
+              <input
+                name="tag-box"
+                onclick="tagSkill('small_guns')"
+                style="transform: translateY(2px)"
+                type="checkbox"
+              />
+              Tag?
+            </span>
+            <br /><br />
+            <span>
+              <button
+                class="thin-button"
+                disabled="true"
+                id="sneak-min"
+                name="skill-decrease"
+                onclick="minusSkill('sneak')"
+              >
+                -
+              </button>
+              <span id="sneak-skill">0</span>
+              <button
+                class="thin-button"
+                id="sneak-max"
+                name="skill-increase"
+                onclick="plusSkill('sneak')"
+              >
+                +
+              </button>
+              <input
+                name="tag-box"
+                onclick="tagSkill('sneak')"
+                style="transform: translateY(2px)"
+                type="checkbox"
+              />
+              Tag?
+            </span>
+            <br /><br />
+            <span>
+              <button
+                class="thin-button"
+                disabled="true"
+                id="speech-min"
+                name="skill-decrease"
+                onclick="minusSkill('speech')"
+              >
+                -
+              </button>
+              <span id="speech-skill">0</span>
+              <button
+                class="thin-button"
+                id="speech-max"
+                name="skill-increase"
+                onclick="plusSkill('speech')"
+              >
+                +
+              </button>
+              <input
+                name="tag-box"
+                onclick="tagSkill('speech')"
+                style="transform: translateY(2px)"
+                type="checkbox"
+              />
+              Tag?
+            </span>
+            <br /><br />
+            <span>
+              <button
+                class="thin-button"
+                disabled="true"
+                id="survival-min"
+                name="skill-decrease"
+                onclick="minusSkill('survival')"
+              >
+                -
+              </button>
+              <span id="survival-skill">0</span>
+              <button
+                class="thin-button"
+                id="survival-max"
+                name="skill-increase"
+                onclick="plusSkill('survival')"
+              >
+                +
+              </button>
+              <input
+                name="tag-box"
+                onclick="tagSkill('survival')"
+                style="transform: translateY(2px)"
+                type="checkbox"
+              />
+              Tag?
+            </span>
+            <br /><br />
+            <span>
+              <button
+                class="thin-button"
+                disabled="true"
+                id="throwing-min"
+                name="skill-decrease"
+                onclick="minusSkill('throwing')"
+              >
+                -
+              </button>
+              <span id="throwing-skill">0</span>
+              <button
+                class="thin-button"
+                id="throwing-max"
+                name="skill-increase"
+                onclick="plusSkill('throwing')"
+              >
+                +
+              </button>
+              <input
+                name="tag-box"
+                onclick="tagSkill('throwing')"
+                style="transform: translateY(2px)"
+                type="checkbox"
+              />
+              Tag?
+            </span>
+            <br /><br />
+            <span>
+              <button
+                class="thin-button"
+                disabled="true"
+                id="unarmed-min"
+                name="skill-decrease"
+                onclick="minusSkill('unarmed')"
+              >
+                -
+              </button>
+              <span id="unarmed-skill">0</span>
+              <button
+                class="thin-button"
+                id="unarmed-max"
+                name="skill-increase"
+                onclick="plusSkill('unarmed')"
+              >
+                +
+              </button>
+              <input
+                name="tag-box"
+                onclick="tagSkill('unarmed')"
                 style="transform: translateY(2px)"
                 type="checkbox"
               />
@@ -542,6 +1038,18 @@
             </span>
           </div>
         </span>
+        <div class="align-center push-down">
+          <p>
+            For each skill check, you'll roll a <b>1d20</b>. To pass the check,
+            you need to at least match <i>20 - (Skill + Attribute)</i>. For
+            example, if your Lockpick rank is 3, and your Perception is 9, then
+            your target is <i>20 - (3 + 9) = 8</i>. <br /><br />
+            Additionally, if you are rolling a skill check using a Tag skill,
+            then the critical success requirement decreases to
+            <i>20 - Skill</i> (so if Lockpick was tagged in the example above,
+            the critical success boundary would be <i>20 - 3 = 17</i>).
+          </p>
+        </div>
       </div>
     </div>
   </body>

@@ -42,11 +42,13 @@ const CHARACTER = {
 };
 let attributePoints = 12;
 
+const BOS_TAGS = ["energy_weapons", "repair", "science"];
 let allocatedSkillPoints = 0;
-let skillPointsMax = () => 9 + CHARACTER.intelligence;
+let skillPointsMax = () => 9 + CHARACTER.special.intelligence;
 let tagSkillsMax = () =>
   4 +
-  (CHARACTER.traits.includes("educated") ? 1 : 0) -
+  (CHARACTER.traits.includes("educated") ? 1 : 0) +
+  (CHARACTER.type === "brotherhood" ? 1 : 0) -
   (CHARACTER.type === "ghoul" ? 1 : 0);
 
 let skipValidate = true;
@@ -108,7 +110,7 @@ function selectTrait(trait) {
 
   const els = [...document.getElementsByName("trait-select")];
   if (CHARACTER.traits.length === 2) {
-    els.filter((e) => !e.checked).forEach((e) => (e.disabled = true));
+    els.forEach((e) => (e.disabled = !e.checked));
   } else {
     els.forEach((e) => (e.disabled = false));
   }
@@ -138,7 +140,7 @@ function giftedSpecial(stat) {
 
   const els = [...document.getElementsByName("gifted-bonus")];
   if (CHARACTER.gifted.length === 2) {
-    els.filter((e) => !e.checked).forEach((e) => (e.disabled = true));
+    els.forEach((e) => (e.disabled = !e.checked));
   } else {
     els.forEach((e) => (e.disabled = false));
   }
@@ -278,34 +280,148 @@ function updateDerivedStats() {
 }
 
 function validateNextPage(page) {
-  if (page === 2) {
-    if (!skipValidate) {
-      if (!CHARACTER.type) {
-        return alert("You must pick a character type!");
+  switch (page) {
+    case 1:
+      document.getElementById("page2").classList.add("hidden");
+      document.getElementById("page1").classList.remove("hidden");
+      break;
+    case 2:
+      if (!skipValidate) {
+        if (!CHARACTER.type) {
+          return alert("You must pick a character type!");
+        }
+
+        if (attributePoints !== 0) {
+          return alert("You have unspent SPECIAL attribute points!");
+        }
+
+        if (CHARACTER.type === "survivor" && CHARACTER.traits.length === 0) {
+          return alert("As a survivor, you must pick at least one trait!");
+        }
+
+        if (
+          CHARACTER.type === "survivor" &&
+          CHARACTER.traits.includes("gifted") &&
+          CHARACTER.gifted.length !== 2
+        ) {
+          return alert("You have unpicked Gifted attribute allocations!");
+        }
+
+        if (!CHARACTER.name) {
+          return alert("Please enter a name!");
+        }
       }
 
-      if (attributePoints !== 0) {
-        return alert("You have unspent SPECIAL attribute points!");
-      }
-
-      if (CHARACTER.type === "survivor" && CHARACTER.traits.length === 0) {
-        return alert("As a survivor, you must pick at least one trait!");
-      }
-
-      if (
-        CHARACTER.type === "survivor" &&
-        CHARACTER.traits.includes("gifted") &&
-        CHARACTER.gifted.length !== 2
-      ) {
-        return alert("You have unpicked Gifted attribute allocations!");
-      }
-
-      if (!CHARACTER.name) {
-        return alert("Please enter a name!");
-      }
-    }
-
-    document.getElementById("page1").classList.add("hidden");
-    document.getElementById("page2").classList.remove("hidden");
+      updateSkillPointsLeft();
+      document.getElementById("page1").classList.add("hidden");
+      document.getElementById("page2").classList.remove("hidden");
+      break;
+    default:
+      break;
   }
+}
+
+function plusSkill(skill) {
+  CHARACTER.skills[skill] = CHARACTER.skills[skill] + 1;
+  allocatedSkillPoints++;
+
+  if (CHARACTER.skills[skill] === 3) {
+    document.getElementById(`${skill}-max`).disabled = true;
+  }
+  document.getElementById(`${skill}-min`).disabled = false;
+
+  if (allocatedSkillPoints >= skillPointsMax()) {
+    [...document.getElementsByName("skill-increase")].forEach(
+      (e) => (e.disabled = true)
+    );
+  }
+
+  document.getElementById(`${skill}-skill`).innerText = CHARACTER.skills[skill];
+  updateSkillPointsLeft();
+}
+
+function minusSkill(skill) {
+  CHARACTER.skills[skill] = CHARACTER.skills[skill] - 1;
+  allocatedSkillPoints--;
+
+  if (
+    CHARACTER.skills[skill] === 0 ||
+    (CHARACTER.tags.includes(skill) && CHARACTER.skills[skill] === 2)
+  ) {
+    document.getElementById(`${skill}-min`).disabled = true;
+  }
+  document.getElementById(`${skill}-max`).disabled = false;
+
+  if (allocatedSkillPoints === 0) {
+    [...document.getElementsByName("skill-decrease")].forEach(
+      (e) => (e.disabled = true)
+    );
+  }
+
+  document.getElementById(`${skill}-skill`).innerText = CHARACTER.skills[skill];
+  updateSkillPointsLeft();
+}
+
+function tagSkill(skill) {
+  if (CHARACTER.tags.includes(skill)) {
+    CHARACTER.tags = CHARACTER.tags.filter((e) => e !== skill);
+  } else {
+    CHARACTER.tags.push(skill);
+  }
+
+  if (
+    CHARACTER.tags.length === tagSkillsMax() ||
+    (CHARACTER.tags.length === tagSkillsMax() - 1 &&
+      CHARACTER.type === "brotherhood" &&
+      !BOS_TAGS.some((t) => CHARACTER.tags.includes(t)))
+  ) {
+    [...document.getElementsByName("tag-box")].forEach(
+      (e) => (e.disabled = !e.checked)
+    );
+  } else {
+    [...document.getElementsByName("tag-box")].forEach(
+      (e) => (e.disabled = false)
+    );
+  }
+
+  if (
+    CHARACTER.tags.length === tagSkillsMax() - 1 &&
+    CHARACTER.type === "brotherhood" &&
+    !BOS_TAGS.some((t) => CHARACTER.tags.includes(t))
+  ) {
+    BOS_TAGS.forEach((t) => {
+      document.getElementById(`bos-${t}`).disabled = false;
+    });
+  }
+
+  const newSkillValue =
+    CHARACTER.skills[skill] + (CHARACTER.tags.includes(skill) ? 2 : -2);
+  if (newSkillValue > 3) {
+    CHARACTER.skills[skill] = 3;
+    allocatedSkillPoints = allocatedSkillPoints - (newSkillValue - 3);
+  } else {
+    CHARACTER.skills[skill] = newSkillValue;
+  }
+
+  if (CHARACTER.skills[skill] === 3) {
+    document.getElementById(`${skill}-max`).disabled = true;
+  } else if (allocatedSkillPoints < skillPointsMax()) {
+    document.getElementById(`${skill}-max`).disabled = false;
+  }
+
+  document.getElementById(`${skill}-skill`).innerText = CHARACTER.skills[skill];
+  updateSkillPointsLeft();
+}
+
+function updateSkillPointsLeft() {
+  document.getElementById("skill-points-left").innerText = `You have ${
+    skillPointsMax() - allocatedSkillPoints
+  } skill points left and ${
+    tagSkillsMax() - CHARACTER.tags.length
+  } tag skills left.`;
+
+  Object.entries(CHARACTER.skills).forEach(([k, v]) => {
+    document.getElementById(`${k}-max`).disabled =
+      v === 3 || allocatedSkillPoints >= skillPointsMax();
+  });
 }
