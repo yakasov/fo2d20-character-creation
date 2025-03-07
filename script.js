@@ -315,6 +315,7 @@ function validateNextPage(page) {
       updateSkillPointsLeft();
       document.getElementById("page1").classList.add("hidden");
       document.getElementById("page2").classList.remove("hidden");
+      document.getElementById("page3").classList.add("hidden");
       break;
     case 3:
       if (!skipValidate) {
