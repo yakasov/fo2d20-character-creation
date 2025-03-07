@@ -51,7 +51,7 @@ let tagSkillsMax = () =>
   (CHARACTER.type === "brotherhood" ? 1 : 0) -
   (CHARACTER.type === "ghoul" ? 1 : 0);
 
-let skipValidate = true;
+let skipValidate = false;
 
 function characterType(type) {
   CHARACTER.type = type;
@@ -453,6 +453,8 @@ function setRequirementColours() {
 
     if (!isValid) {
       d.children["requirements-line"].classList.add("red");
+    } else {
+      d.children["requirements-line"].classList.remove("red");
     }
   });
 }
