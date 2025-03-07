@@ -1115,6 +1115,93 @@
               the opposite gender.
             </p>
           </div>
+          <div class="perk-css" onclick="choosePerk('cap_collector')">
+            <h3><b>Cap Collector</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> CHA 5</p>
+            <p>
+              When you buy or sell items, you may increase or decrease the price
+              of the goods being traded by 10%.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('comprehension')">
+            <h3><b>Comprehension</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> INT 6</p>
+            <p>
+              After you use the bonus gained from reading a magazine, roll a
+              Combat Dice. If you roll an Effect, you may use that bonus an
+              additional time.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('demolition_expert')">
+            <h3><b>Demolition Expert</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> PER 6, LCK 6</p>
+            <p>
+              When you make an attack using a weapon with the Blast quality, the
+              attack gains the Vicious damage effect.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('hacker')">
+            <h3><b>Hacker</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> INT 8</p>
+            <p>
+              The difficulty of skill checks to hack computers is decreased by
+              1.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('inspirational')">
+            <h3><b>Inspirational</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> CHA 8</p>
+            <p>
+              Because you lead by example, the maximum number of AP the group
+              may save is increased by 1.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('medic')">
+            <h3><b>Medic</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> INT 8</p>
+            <p>
+              When you use the First Aid action to try and treat an injury, you
+              can re-roll 1d20.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('mysterious_stranger')">
+            <h3><b>Mysterious Stranger</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> LCK 7</p>
+            <p>
+              At the start of any combat encounter, you may spend 1 Luck point.
+              If you do, then at any point during the scene, a Mysterious
+              Stranger may appear and make a single ranged attack against an
+              enemy you attacked, or who just attacked you, then vanish. They
+              attack with a custom .44 Magnum revolver that is sure to inflict
+              serious damage.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('nuclear_physicist')">
+            <h3><b>Nuclear Physicist</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> INT 9</p>
+            <p>
+              Whenever you use a weapon that inflicts radiation damage, or has
+              the Radioactive damage effect, each Effect you roll inflicts one
+              additional point of Radiation damage.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('scoundrel')">
+            <h3><b>Scoundrel</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> CHA 7</p>
+            <p>
+              When you make a <b>CHA + Speech</b> check to convince someone of a
+              lie, you may ignore the first complication you roll.
+            </p>
+          </div>
         </span>
         <span class="center33">
           <div class="perk-css" onclick="choosePerk('adrenaline_rush')">
@@ -1141,7 +1228,101 @@
             <p><b>Ranks:</b> 1</p>
             <p name="requirements-line"><b>Requirements:</b> LCK 6</p>
             <p>
-              When you inflict a critical hit, roll 1 Combat Die; if you roll an Effect, you inflict one additional injury to a random location.
+              When you inflict a critical hit, roll 1 Combat Die; if you roll an
+              Effect, you inflict one additional injury to a random location.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('cautious_nature')">
+            <h3><b>Cautious Nature</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> PER 7</p>
+            <p>
+              Whenever you attempt a skill check, and you buy one or more d20s
+              by spending AP, you may re-roll 1d20. Conflicts with
+              <i>Daring Nature</i>.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('concentrated_fire')">
+            <h3><b>Concentrated Fire</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> PER 8, AGI 6</p>
+            <p>
+              When you make a ranged attack and spend ammunition to increase the
+              damage, you may re-roll up to 3 Combat Dice for your damage roll.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('faster_healing')">
+            <h3><b>Faster Healing</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line">
+              <b>Requirements:</b> END 6, not a robot
+            </p>
+            <p>
+              When you make an <b>END + Survival</b> check to heal your own
+              injuries, the first additional d20 you buy is free.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('hunter')">
+            <h3><b>Hunter</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> END 6</p>
+            <p>
+              When you make an attack against an NPC that is a Mammal, Lizard or
+              Insect and is also Mutated, your attack gains the Vicious damage
+              effect.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('junktown_jerky_vendor')">
+            <h3><b>Junktown Jerky Vendor</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> CHA 8</p>
+            <p>
+              The difficulty of any <b>CHA + Barter</b> check you attempt to buy
+              or sell goods is reduced by 1.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('mister_sandman')">
+            <h3><b>Mister Sandman</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> AGI 9</p>
+            <p>
+              When you make a sneak attack with a silenced or suppressed weapon,
+              the damage is increased by 2 Combat Die. You cannot gain this
+              benefit whilst in Power Armour.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('night_person')">
+            <h3><b>Night Person</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> PER 7</p>
+            <p>You reduce any difficulty increases due to darkness by 1.</p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('party_boy')">
+            <h3><b>Party Boy/Party Girl</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> END 6, CHA 7</p>
+            <p>
+              You cannot become addicted to alcoholic drinks, and whenever you
+              drink an alcoholic drink, you heal 2 HP.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('size_matters')">
+            <h3><b>Size Matters</b></h3>
+            <p><b>Ranks:</b> 3</p>
+            <p name="requirements-line"><b>Requirements:</b> END 7, AGI 6</p>
+            <p>
+              When you make a ranged attack with any heavy weapon, you add 1
+              Combat Die to the weapon's damage, per rank. Each time you take
+              this perk, the level requirement increases by 4.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('solar_powered')">
+            <h3><b>Solar Powered</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> END 7</p>
+            <p>
+              For every hour you spend in direct sunlight, you heal 1 Radiation
+              damage.
             </p>
           </div>
         </span>
@@ -1171,7 +1352,92 @@
             <p><b>Ranks:</b> 1</p>
             <p name="requirements-line"><b>Requirements:</b> LCK 5</p>
             <p>
-              When you are scavenging a location that contains food, you gain 1 additional random food item, without spending AP.
+              When you are scavenging a location that contains food, you gain 1
+              additional random food item, without spending AP.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('chemist')">
+            <h3><b>Chemist</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> INT 7</p>
+            <p>Chems you create last twice as long.</p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('daring_nature')">
+            <h3><b>Daring Nature</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> LCK 7</p>
+            <p>
+              Whenever you attempt a skill check, and you buy one or more d20s
+              by giving the GM AP, you may re-roll 1d20. Conflicts with
+              <i>Cautious Nature</i>.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('grim_reapers_sprint')">
+            <h3><b>Grim Reaper's Sprint</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> LCK 8</p>
+            <p>
+              When you make an attack that kills one or more enemies, roll a
+              Combat Die. If you roll an Effect, add 2 AP the group's pool.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('infiltrator')">
+            <h3><b>Infiltrator</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> PER 8</p>
+            <p>
+              When you attempt a Lockpick skill check to unlock a door or
+              container, you may re-roll 1d20.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('light_step')">
+            <h3><b>Light Step</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> None</p>
+            <p>
+              When you roll any complications on an Agility-based skill check,
+              you may ignore one complication for every 1 AP spent.
+              Additionally, you may re-roll 1d20 on any
+              <b>AGI + Athletics</b> check to avoid ground-based traps.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('moving_target')">
+            <h3><b>Moving Target</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> AGI 9</p>
+            <p>
+              When you take the Sprint action, your Defense increases by 1 until
+              the start of your next turn.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('ninja')">
+            <h3><b>Ninja</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> AGI 8</p>
+            <p>
+              When you make a sneak attack with a melee weapon or unarmed
+              attack, the damage is increased by 2 Combat Die. You cannot gain
+              this benefit whilst in Power Armour.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('quick_hands')">
+            <h3><b>Quick Hands</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> AGI 8</p>
+            <p>
+              You can reload firearms faster. When you make a ranged attack, you
+              may spend 2 AP to double the Fire Rate of your gun for that
+              attack.
+            </p>
+          </div>
+          <div class="perk-css" onclick="choosePerk('sniper')">
+            <h3><b>Sniper</b></h3>
+            <p><b>Ranks:</b> 1</p>
+            <p name="requirements-line"><b>Requirements:</b> PER 8, AGI 6</p>
+            <p>
+              When you take the Aim minor action, and then make a ranged attack
+              with a two-handed weapon with the Accurate quality, you can
+              specify a hit location to target for free.
             </p>
           </div>
         </span>

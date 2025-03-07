@@ -319,16 +319,17 @@ function validateNextPage(page) {
     case 3:
       if (!skipValidate) {
         if (allocatedSkillPoints !== skillPointsMax()) {
-          return alert("You have not allocated all of your skill points!")
+          return alert("You have not allocated all of your skill points!");
         }
 
         if (CHARACTER.tags.length !== tagSkillsMax()) {
-          return alert("You have not allocated all of your Tag skills!")
+          return alert("You have not allocated all of your Tag skills!");
         }
       }
-      
+
       document.getElementById("page2").classList.add("hidden");
       document.getElementById("page3").classList.remove("hidden");
+      setRequirementColours();
       break;
     default:
       break;
@@ -437,5 +438,21 @@ function updateSkillPointsLeft() {
   Object.entries(CHARACTER.skills).forEach(([k, v]) => {
     document.getElementById(`${k}-max`).disabled =
       v === 3 || allocatedSkillPoints >= skillPointsMax();
+  });
+}
+
+function setRequirementColours() {
+  [...document.getElementsByClassName("perk-css")].forEach((d) => {
+    const perkName = d.onclick.toString().match(/\('(.*?)\'\)/)[1];
+    let isValid = true;
+    Object.entries(PERK_REQUIREMENTS[perkName]).forEach(([k, v]) => {
+      if (CHARACTER.special[k] < v) {
+        isValid = false;
+      }
+    });
+
+    if (!isValid) {
+      d.children["requirements-line"].classList.add("red");
+    }
   });
 }
