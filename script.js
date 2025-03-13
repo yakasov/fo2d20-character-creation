@@ -336,6 +336,7 @@ function validateNextPage(page) {
       setRequirementColours();
       document.getElementById("page2").classList.add("hidden");
       document.getElementById("page3").classList.remove("hidden");
+      document.getElementById("page4").classList.add("hidden");
       break;
     case 4:
       if (!skipValidate) {
