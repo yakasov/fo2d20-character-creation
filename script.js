@@ -8,6 +8,7 @@ const CHARACTER = {
   },
   gifted: [],
   name: null,
+  perks: [],
   skills: {
     athletics: 0,
     barter: 0,
@@ -41,6 +42,10 @@ const CHARACTER = {
   type: null,
 };
 let attributePoints = 12;
+
+let perk_els = [];
+let maxPerks = () =>
+  1 + (CHARACTER.type === "survivor" && CHARACTER.traits.length === 1);
 
 const BOS_TAGS = ["energy_weapons", "repair", "science"];
 let allocatedSkillPoints = 0;
@@ -328,9 +333,22 @@ function validateNextPage(page) {
         }
       }
 
+      setRequirementColours();
       document.getElementById("page2").classList.add("hidden");
       document.getElementById("page3").classList.remove("hidden");
-      setRequirementColours();
+      break;
+    case 4:
+      if (!skipValidate) {
+        if (CHARACTER.perks.length !== maxPerks()) {
+          return alert(
+            `You have not chosen all your perks! You have a maximum of ${maxPerks()}.`
+          );
+        }
+      }
+
+      setSummary();
+      document.getElementById("page3").classList.add("hidden");
+      document.getElementById("page4").classList.remove("hidden");
       break;
     default:
       break;
@@ -444,7 +462,7 @@ function updateSkillPointsLeft() {
 
 function setRequirementColours() {
   [...document.getElementsByClassName("perk-css")].forEach((d) => {
-    const perkName = d.onclick.toString().match(/\('(.*?)\'\)/)[1];
+    const perkName = d.onclick.toString().match(/\'(.*?)\'\)/)[1];
     let isValid = true;
     Object.entries(PERK_REQUIREMENTS[perkName]).forEach(([k, v]) => {
       if (CHARACTER.special[k] < v) {
@@ -458,4 +476,70 @@ function setRequirementColours() {
       d.children["requirements-line"].classList.remove("red");
     }
   });
+}
+
+function choosePerk(el, perk) {
+  let isValid = true;
+  Object.entries(PERK_REQUIREMENTS[perk]).forEach(([k, v]) => {
+    if (CHARACTER.special[k] < v) {
+      isValid = false;
+    }
+  });
+
+  if (!isValid && !skipValidate) {
+    return alert("You do not meet the requirements for this perk!");
+  }
+
+  if (CHARACTER.perks.includes(perk)) {
+    el.classList.remove("chosen-perk");
+    perk_els = perk_els.filter((e) => e !== el);
+    CHARACTER.perks = CHARACTER.perks.filter((p) => p !== perk);
+  } else {
+    if (perk_els.length === maxPerks()) {
+      const oldEl = perk_els.shift();
+      oldEl.classList.remove("chosen-perk");
+      CHARACTER.perks.shift();
+    }
+
+    perk_els.push(el);
+    el.classList.add("chosen-perk");
+    CHARACTER.perks.push(perk);
+  }
+}
+
+function setSummary() {
+  document.getElementById("final-name").innerText =
+    CHARACTER.name ?? "validate test name";
+  document.getElementById("final-type").innerText =
+    CHARACTER.type ?? "validate test type";
+
+  Object.entries(CHARACTER.special).forEach(([k, v]) => {
+    document.getElementById(`final-special-${k}`).innerHTML = `<b>${
+      k.charAt(0).toUpperCase() + k.slice(1)
+    }:</b> ${v}`;
+  });
+
+  document.getElementById("final-traits").innerText = CHARACTER.traits.length
+    ? CHARACTER.traits.join(", ")
+    : CHARACTER_TRAITS_LOCKED[CHARACTER.type];
+
+  document.getElementById("final-gifted").innerText = CHARACTER.gifted.length
+    ? CHARACTER.gifted.join(", ")
+    : "No";
+
+  Object.entries(CHARACTER.derived).forEach(([k, v]) => {
+    document.getElementById(`final-derived-${k}`).innerHTML = `<b>${
+      k.charAt(0).toUpperCase() + k.slice(1)
+    }:</b> ${v} ${k === "carry" ? "lbs" : ""}`;
+  });
+
+  Object.entries(CHARACTER.skills).forEach(([k, v]) => {
+    document.getElementById(`final-skill-${k}`).innerHTML = `<b>${
+      k.includes("_")
+        ? SKILL_STRING_REPLACEMENTS[k]
+        : k.charAt(0).toUpperCase() + k.slice(1)
+    }:</b> ${v}${CHARACTER.tags.includes(k) ? "*" : ""}`;
+  });
+
+  document.getElementById("final-perks").innerText = CHARACTER.perks.join(", ");
 }

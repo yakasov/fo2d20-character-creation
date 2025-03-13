@@ -124,3 +124,18 @@ const PERK_REQUIREMENTS = {
   quick_hands: { agility: 8 },
   sniper: { perception: 8, agility: 6 },
 };
+
+const CHARACTER_TRAITS_LOCKED = {
+  vault: "Vault Kid",
+  brotherhood: "The Chain that Binds",
+  ghoul: "Necrotic Post-Human",
+  robot: "Mister Handy Robot",
+  mutant: "Forced Evolution",
+};
+
+const SKILL_STRING_REPLACEMENTS = {
+  big_guns: "Big Guns",
+  energy_weapons: "Energy Weapons",
+  melee_weapons: "Melee Weapons",
+  small_guns: "Small Guns",
+};

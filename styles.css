@@ -85,6 +85,11 @@ body {
   float: right;
 }
 
+.right69 {
+  width: 69;
+  float: left;
+}
+
 .align-center {
   text-align: center;
 }
@@ -130,6 +135,23 @@ body {
   margin: 16px 0;
 }
 
+.chosen-perk {
+  border-style: dotted;
+  border-width: 2px;
+  background-color: #fab9a5;
+}
+
 .red {
   color: red;
+}
+
+.less-height {
+  line-height: 4px;
+  margin-block-end: 8px;
+  margin-block-start: 8px;
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
 }
