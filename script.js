@@ -120,6 +120,10 @@ function selectTrait(trait) {
     els.forEach((e) => (e.disabled = false));
   }
 
+  if (trait === "autism") {
+    autismSpecial();
+  }
+
   if (trait === "gifted") {
     if (CHARACTER.traits.includes("gifted")) {
       [...document.getElementsByName("gifted-bonus")].forEach((e) => {
@@ -132,6 +136,24 @@ function selectTrait(trait) {
   }
 
   updateDerivedStats();
+}
+
+function autismSpecial() {
+  if (CHARACTER.traits.includes("autism")) {
+    CHARACTER.special.perception = CHARACTER.special.perception - 1;
+    CHARACTER.special.charisma = CHARACTER.special.charisma + 1;
+    CHARACTER.special.agility = CHARACTER.special.agility + 1;
+  } else {
+    CHARACTER.special.perception = CHARACTER.special.perception + 1;
+    CHARACTER.special.charisma = CHARACTER.special.charisma - 1;
+    CHARACTER.special.agility = CHARACTER.special.agility - 1;
+  }
+
+  Object.entries(CHARACTER.special).forEach(([k, v]) => {
+    document.getElementById(`${k}-stat`).innerHTML = `&emsp;${
+      v < 10 ? "&ensp;" : ""
+    }${v}&emsp;`;
+  });
 }
 
 function giftedSpecial(stat) {
@@ -184,6 +206,13 @@ function isAtSpecialLimit(type, stat) {
     );
   }
 
+  function g() {
+    return (
+      (CHARACTER.traits.includes("autism") && f("perception") === 3) ||
+      (!CHARACTER.traits.includes("autism") && f("perception") === 4)
+    );
+  }
+
   return (
     (type === "plus" &&
       ((CHARACTER.type === "mutant" &&
@@ -196,7 +225,7 @@ function isAtSpecialLimit(type, stat) {
       CHARACTER.type === "mutant" &&
       (((stat === "strength" || stat === "endurance") && f(stat) === 6) ||
         (!(stat === "strength" || stat === "endurance") && f(stat) === 4))) ||
-    (CHARACTER.type !== "mutant" && f(stat) === 4)
+    (CHARACTER.type !== "mutant" && stat === "perception" ? g() : f(stat) === 4)
   );
 }
 
@@ -255,7 +284,10 @@ function minusSpecial(stat) {
 }
 
 function updateDerivedStats() {
-  CHARACTER.derived.hp = CHARACTER.special.endurance + CHARACTER.special.luck;
+  CHARACTER.derived.hp =
+    CHARACTER.special.endurance +
+    CHARACTER.special.luck +
+    CHARACTER.traits.includes("autism");
   CHARACTER.derived.defense = CHARACTER.special.agility >= 9 ? 2 : 1;
   CHARACTER.derived.carry =
     CHARACTER.type === "robot"

@@ -5,11 +5,15 @@ const CHARACTER_TRAITS = {
     `,
   survivor: `You may choose two of the following traits, or one trait and one additional perk. Each trait has a benefit and may have an accompanying penalty.
     <br /><br />
+    <b><input type="checkbox" onclick="selectTrait('autism')" name="trait-select" />&nbsp;Autism:</b> You have increased pain tolerance and keen senses, but lower social and motor skills. You gain +1 PER and +1 HP, but -1 AGI and CHA.
+    <br />
     <b><input type="checkbox" onclick="selectTrait('educated')" name="trait-select" />&nbsp;Educated:</b> You have one additional tag skill, but if you fail a skill check using a skill other than a tag skill, the GM gains 1 AP.
     <br />
     <b><input type="checkbox" onclick="selectTrait('fast shot')" name="trait-select" />&nbsp;Fast Shot:</b> If you take a second major action in combat, and use it to make a range attack, the additional action costs 1 AP rather than 2 AP - however, you cannot use the Aim minor action.
     <br />
     <b><input type="checkbox" onclick="selectTrait('gifted')" name="trait-select" />&nbsp;Gifted:</b> Choose two S.P.E.C.I.A.L attributes and increase them by +1 each, but your maximum of Luck points is one fewer than your Luck attribute. 
+    <br />
+    <b><input type="checkbox" onclick="selectTrait('goon')" name="trait-select" />&nbsp;Goon:</b> You are a professional gooner. Against boss enemies, your Damage bonuses increase by +1 Combat Die ("It's da bat!") but you must 'consume precious material' every day or suffer compounding S.P.E.C.I.A.L debuffs.
     <br />
     <b><input type="checkbox" onclick="selectTrait('heavy handed')" name="trait-select" />&nbsp;Heavy Handed:</b> Your Melee Damage bonus increases by +1 Combat Die, but your melee and unarmed attacks suffer a complication on a 1 or 2, as opposed to just a 1.
     <br />
